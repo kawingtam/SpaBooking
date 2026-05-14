@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Spa | Beauty & Relaxation</title>
+    
+    <!-- Google Fonts for professional typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #5a3e45;  /* Earthy mauve-brown text */
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background-color: #fffaf8;  /* Very light pink background */
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #e8b4b8;  /* Soft dusty rose */
+        }
+
+        .logo span {
+            color: #b8928a;  /* Muted earthy pink */
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5a3e45;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e8b4b8;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(90, 62, 69, 0.3), rgba(90, 62, 69, 0.2)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #e8b4b8;  /* Soft dusty rose */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn:hover {
+            background: #d49c9f;  /* Deeper pink */
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #e8b4b8;
+        }
+
+        /* Sections Common */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #5a3e45;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e8b4b8;
+            margin: 0.5rem auto 0;
+            border-radius: 3px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(232, 180, 184, 0.2);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(232, 180, 184, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f5e6e3;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(232, 180, 184, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #e8b4b8;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #5a3e45;
+        }
+
+        .service-card .price {
+            color: #d49c9f;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        /* Booking Section */
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: #fff5f0;  /* Warm pinkish cream */
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid #f0e0db;
+        }
+
+        .booking-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #5a3e45;
+        }
+
+        .booking-info p {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: #e8b4b8;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #f0e0db;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            background: white;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            outline: none;
+            border-color: #e8b4b8;
+            box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.2);
+        }
+
+        .booking-form textarea {
+            resize: vertical;
+        }
+
+        /* Google Calendar Booking Alert */
+        .booking-alert {
+            background: #faf0ed;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .booking-alert i {
+            color: #e8b4b8;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5e6e3;  /* Light earthy pink */
+            color: #7a5a60;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: #d49c9f;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e8b4b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content,
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .booking-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 100;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Serenity Spa <span>Beauty & Wellness</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#booking">Book Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Rejuvenate Your Mind & Body</h1>
+        <p>Experience luxury spa treatments in a tranquil environment</p>
+        <a href="#booking" class="btn">Book Your Escape →</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to <strong>Serenity Spa</strong>, where relaxation meets rejuvenation. Nestled in the heart of the city, our sanctuary offers a peaceful escape from the daily grind.</p>
+                <p>With over 10 years of experience, our certified therapists use only premium organic products to provide you with an unforgettable spa journey. Whether you need deep tissue relief or a moment of pure tranquility, we tailor every treatment to your unique needs.</p>
+                <p>✨ <strong>Our Promise:</strong> Clean, safe, and personalized care in a serene atmosphere.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600" alt="Spa treatment room">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section" style="background: #fffaf8;">
+    <div class="container">
+        <h2 class="section-title">Our Signature Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-spa"></i>
+                <h3>Aromatherapy Massage</h3>
+                <p>Essential oils combined with gentle pressure to calm your senses.</p>
+                <div class="price">$85 / 60 min</div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Deep Tissue Massage</h3>
+                <p>Targets muscle knots and tension for deep relief.</p>
+                <div class="price">$95 / 60 min</div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-gem"></i>
+                <h3>Hydrating Facial</h3>
+                <p>Restore glow with organic serums and gentle exfoliation.</p>
+                <div class="price">$75 / 45 min</div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hot-tub"></i>
+                <h3>Hot Stone Therapy</h3>
+                <p>Warm basalt stones melt away deep muscle stiffness.</p>
+                <div class="price">$110 / 75 min</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Section -->
+<section id="booking" class="section">
+    <div class="container">
+        <h2 class="section-title">Book Your Moment of Bliss</h2>
+        <div class="booking-container">
+            <div class="booking-info">
+                <h3>Ready to relax?</h3>
+                <p>Fill out the form and we'll confirm your appointment via email within 2 hours.</p>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Call us: (555) 123-4567</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>hello@serenityspa.com</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Wellness Ave, Suite 101, Your City</span>
+                </div>
+                <div class="booking-alert">
+                    <i class="fas fa-calendar-check"></i> Appointments sync with Google Calendar
+                </div>
+            </div>
+            <form class="booking-form" action="https://formspree.io/f/xjkgqngq" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <select name="service" required>
+                    <option value="">Select a Service</option>
+                    <option>Aromatherapy Massage - $85</option>
+                    <option>Deep Tissue Massage - $95</option>
+                    <option>Hydrating Facial - $75</option>
+                    <option>Hot Stone Therapy - $110</option>
+                </select>
+                <input type="date" name="date" required>
+                <select name="time" required>
+                    <option value="">Preferred Time</option>
+                    <option>9:00 AM</option>
+                    <option>10:30 AM</option>
+                    <option>1:00 PM</option>
+                    <option>2:30 PM</option>
+                    <option>4:00 PM</option>
+                </select>
+                <textarea name="message" rows="3" placeholder="Special requests or notes..."></textarea>
+                <button type="submit" class="btn">Request Appointment</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Serenity Spa. Designed with <i class="fas fa-heart" style="color:#e8b4b8;"></i> for your wellness.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="https://github.com/your-username" target="_blank">Developer Portfolio <i class="fab fa-github"></i></a>
+    </p>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/15551234567?text=Hi%2C%20I'd%20like%20to%20book%20a%20spa%20appointment" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
