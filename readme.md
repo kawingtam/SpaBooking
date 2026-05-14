@@ -83,7 +83,7 @@ Fonts – update the Google Fonts link and the font-family in body / h1, h2, h3.
 
 Services – add or remove cards inside .services-grid or the wellness section.
 
-Booking method – if you prefer a contact form, replace the WhatsApp buttons with a <form> (requires backend or a service like Formspree).
+Booking method – if you prefer a contact form, replace the WhatsApp buttons with a form (requires backend or a service like Formspree).
 
 ## 🌍 Deployment
 Because the page is static, you can host it anywhere:
