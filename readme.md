@@ -66,7 +66,7 @@ text
 ```bash
 git clone https://github.com/your-username/ageless-rejuvenation.git
 cd ageless-rejuvenation
-2. Open the page
+### 2. Open the page
 Simply double‑click index.html, or run a local server:
 
 bash
@@ -74,7 +74,7 @@ bash
 python -m http.server 8000
 Then visit http://localhost:8000.
 
-3. Customise for your business
+### 3. Customise for your business
 Edit the following details directly inside index.html:
 
 html
