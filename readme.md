@@ -23,11 +23,11 @@ Built with pure HTML/CSS/JS – no frameworks, no backend. Ideal for quick deplo
 ---
 
 ## 🗂️ Project Structure
+
 ageless-rejuvenation/
 ├── index.html # Complete landing page (inline CSS & JS)
 └── README.md # Project documentation (this file)
 
-text
 
 > Open `index.html` directly in any browser – no build steps required.
 
@@ -70,23 +70,19 @@ cd ageless-rejuvenation
 ### 2. Open the page
 Simply double‑click index.html, or run a local server:
 
-bash
-Python 3
-python -m http.server 8000
-Then visit http://localhost:8000.
+> python -m http.server 8000
 
 ### 3. Customise for your business
 Edit the following details directly inside index.html:
 
-html
 <!-- WhatsApp number (appears in two places) -->
-<a href="https://wa.me/+85291376887?text=我想預約逆齡重生術療程">
+<a href="https://wa.me/+85212345678?text=我想預約逆齡重生術療程">
 
 <!-- Instagram handle -->
 <a href="https://www.instagram.com/your-spa-handle">
 
 <!-- Contact details -->
-<span>+852 9137 6887</span>
+<span>+852 1234 5678</span>
 <span>hello@agelessspa.com</span>
 <span>荔枝角 地鐵站B1出口 永康街55號 金百盛中心 2301室</span>
 Replace Unsplash images with your own photos (clinic, treatments, or staff).
@@ -128,19 +124,20 @@ Serve as a reusable template for similar wellness or beauty brands.
 It prioritises conversion, mobile usability, and brand storytelling.
 
 ## 📝 Project Reflection
-Building this page reinforced skills in:
+This landing page was built **for a friend to help launch her medical spa business**.  
+The goal was to create a professional, trustworthy online presence quickly, without backend complexity or ongoing maintenance costs.
 
-Responsive layout design (Flexbox, Grid, media queries)
+Through this project, I practiced and reinforced:
 
-CSS animations (fadeInUp) for subtle engagement
+- **Responsive layout design** (Flexbox, Grid, media queries) – ensuring the site looks great on phones, tablets, and desktops.
+- **CSS animations** (`fadeInUp`) – adding subtle visual engagement without hurting performance.
+- **Integrating third‑party chat links** (WhatsApp, Instagram) – enabling direct booking without building a contact form or backend.
+- **Structuring a one‑page site** – organising content into a clear information hierarchy (hero → about → services → wellness → booking).
+- **Writing self‑contained HTML/CSS/JS** – no frameworks, no build steps, just a single file that works anywhere.
 
-Integrating third‑party chat links without APIs
+The result is a **lightweight, professional landing page** that can be deployed in minutes and is easy for my friend to update (just edit the HTML).  
 
-Structuring a one‑page site for clear information hierarchy
-
-Writing self‑contained HTML/CSS/JS that works anywhere
-
-The result is a lightweight, professional landing page that can be deployed in minutes.
+It gives her a real online storefront to share with potential clients, take bookings via chat, and build her brand – all without paying for expensive web development or monthly hosting fees.
 
 ## 🌟 Status
 ✅ Complete – ready to use as a live business website.
