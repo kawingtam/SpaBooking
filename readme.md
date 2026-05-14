@@ -23,10 +23,11 @@ Built with pure HTML/CSS/JS – no frameworks, no backend. Ideal for quick deplo
 ---
 
 ## 🗂️ Project Structure
-
+```
 ageless-rejuvenation/
-├── index.html # Complete landing page (inline CSS & JS)
-└── README.md # Project documentation (this file)
+├── index.html          # Complete landing page (inline CSS & JS)
+└── README.md           # Project documentation (this file)
+```
 
 
 > Open `index.html` directly in any browser – no build steps required.
@@ -73,18 +74,6 @@ Simply double‑click index.html, or run a local server:
 > python -m http.server 8000
 
 ### 3. Customise for your business
-Edit the following details directly inside index.html:
-
-<!-- WhatsApp number (appears in two places) -->
-<a href="https://wa.me/+85212345678?text=我想預約逆齡重生術療程">
-
-<!-- Instagram handle -->
-<a href="https://www.instagram.com/your-spa-handle">
-
-<!-- Contact details -->
-<span>+852 1234 5678</span>
-<span>hello@agelessspa.com</span>
-<span>荔枝角 地鐵站B1出口 永康街55號 金百盛中心 2301室</span>
 Replace Unsplash images with your own photos (clinic, treatments, or staff).
 
 ## 🎨 Customisation Guide
@@ -124,7 +113,7 @@ Serve as a reusable template for similar wellness or beauty brands.
 It prioritises conversion, mobile usability, and brand storytelling.
 
 ## 📝 Project Reflection
-This landing page was built **for a friend to help launch her medical spa business**.  
+This landing page was built **for a friend to help launch her  spa business**.  
 The goal was to create a professional, trustworthy online presence quickly, without backend complexity or ongoing maintenance costs.
 
 Through this project, I practiced and reinforced:
@@ -144,11 +133,9 @@ It gives her a real online storefront to share with potential clients, take book
 
 🔧 Possible future improvements:
 
-Add a simple contact form (using Formspree or Getform)
-
-Include a before/after gallery
-
-Support for multiple languages (Chinese/English toggle)
+ - Add a simple contact form (using Formspree or Getform)
+ - Include a before/after gallery
+ - Support for multiple languages (Chinese/English toggle)
 
 ## 📄 License
 MIT – you are free to use, modify, and distribute this code for personal or commercial projects.
