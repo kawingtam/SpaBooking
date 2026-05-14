@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serenity Spa | Beauty & Relaxation</title>
+    <title>逆齡重生術 | 醫學級美容 spa</title>
     
-    <!-- Google Fonts for professional typography -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -20,21 +20,20 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #5a3e45;  /* Earthy mauve-brown text */
+            color: #5a3e45;
             line-height: 1.6;
             scroll-behavior: smooth;
-            background-color: #fffaf8;  /* Very light pink background */
+            background-color: #fffaf8;
         }
 
         h1, h2, h3, .logo {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Header & Navigation */
+        /* Header & Navigation — new color */
         header {
-            background: rgba(255, 250, 248, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+            background: #d9a38c;  /* Warm terracotta pink */
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
             position: fixed;
             width: 100%;
             top: 0;
@@ -54,11 +53,11 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 600;
-            color: #e8b4b8;  /* Soft dusty rose */
+            color: #fff;
         }
 
         .logo span {
-            color: #b8928a;  /* Muted earthy pink */
+            color: #fef0e6;
             font-size: 0.9rem;
             font-weight: 300;
         }
@@ -71,13 +70,13 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #5a3e45;
+            color: #fff;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: opacity 0.3s;
         }
 
         .nav-links a:hover {
-            color: #e8b4b8;
+            opacity: 0.8;
         }
 
         /* Hero Section */
@@ -111,7 +110,7 @@
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: #e8b4b8;  /* Soft dusty rose */
+            background: #d9a38c;
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -123,22 +122,11 @@
         }
 
         .btn:hover {
-            background: #d49c9f;  /* Deeper pink */
+            background: #c58973;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.3);
+            box-shadow: 0 10px 20px rgba(217, 163, 140, 0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: #e8b4b8;
-        }
-
-        /* Sections Common */
         .section {
             padding: 5rem 2rem;
         }
@@ -161,7 +149,7 @@
             display: block;
             width: 60px;
             height: 3px;
-            background: #e8b4b8;
+            background: #d9a38c;
             margin: 0.5rem auto 0;
             border-radius: 3px;
         }
@@ -182,10 +170,10 @@
         .about-image img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(232, 180, 184, 0.2);
+            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
         }
 
-        /* Services Section */
+        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -197,19 +185,19 @@
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(232, 180, 184, 0.1);
+            box-shadow: 0 5px 20px rgba(217, 163, 140, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #f5e6e3;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(232, 180, 184, 0.2);
+            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
         }
 
         .service-card i {
             font-size: 3rem;
-            color: #e8b4b8;
+            color: #d9a38c;
             margin-bottom: 1rem;
         }
 
@@ -219,19 +207,17 @@
             color: #5a3e45;
         }
 
-        .service-card .price {
-            color: #d49c9f;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin: 1rem 0;
+        .service-card p {
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
         }
 
-        /* Booking Section */
+        /* No price section */
         .booking-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            background: #fff5f0;  /* Warm pinkish cream */
+            background: #fff5f0;
             padding: 3rem;
             border-radius: 30px;
             border: 1px solid #f0e0db;
@@ -256,7 +242,7 @@
 
         .info-item i {
             font-size: 1.5rem;
-            color: #e8b4b8;
+            color: #d9a38c;
         }
 
         .booking-form input,
@@ -275,15 +261,10 @@
         .booking-form select:focus,
         .booking-form textarea:focus {
             outline: none;
-            border-color: #e8b4b8;
-            box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.2);
+            border-color: #d9a38c;
+            box-shadow: 0 0 0 3px rgba(217, 163, 140, 0.2);
         }
 
-        .booking-form textarea {
-            resize: vertical;
-        }
-
-        /* Google Calendar Booking Alert */
         .booking-alert {
             background: #faf0ed;
             padding: 1rem;
@@ -294,27 +275,25 @@
         }
 
         .booking-alert i {
-            color: #e8b4b8;
+            color: #d9a38c;
         }
 
-        /* Footer */
         footer {
-            background: #f5e6e3;  /* Light earthy pink */
+            background: #f5e6e3;
             color: #7a5a60;
             text-align: center;
             padding: 2rem;
         }
 
         footer a {
-            color: #d49c9f;
+            color: #d9a38c;
             text-decoration: none;
         }
 
         footer a:hover {
-            color: #e8b4b8;
+            color: #c58973;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -326,40 +305,32 @@
             }
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
             .nav-links {
                 gap: 1.5rem;
             }
-            
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
             .about-content,
             .booking-container {
                 grid-template-columns: 1fr;
             }
-            
             .section {
                 padding: 3rem 1rem;
             }
-            
             .section-title {
                 font-size: 2rem;
             }
-
             .booking-container {
                 padding: 1.5rem;
             }
         }
 
-        /* WhatsApp Floating Button */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -381,76 +352,95 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
+        
     </style>
 </head>
 <body>
 
 <header>
     <nav>
-        <div class="logo">Serenity Spa <span>Beauty & Wellness</span></div>
+        <div class="logo">逆齡重生術 <span>醫學級美容 spa</span></div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#about">關於</a></li>
+            <li><a href="#services">服務</a></li>
+            <li><a href="#booking">預約</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- Hero Section -->
 <section id="home" class="hero">
     <div class="hero-content">
-        <h1>Rejuvenate Your Mind & Body</h1>
-        <p>Experience luxury spa treatments in a tranquil environment</p>
-        <a href="#booking" class="btn">Book Your Escape →</a>
+        <h1>肌底 · 逆齡 · 重生術</h1>
+        <p>專利 HD-DU 雙頻超聲波技術 | 電動無痛水光筆 | 醫學級精華</p>
+        <a href="#booking" class="btn">立即預約 →</a>
     </div>
 </section>
 
-<!-- About Section -->
 <section id="about" class="section">
     <div class="container">
-        <h2 class="section-title">About Us</h2>
+        <h2 class="section-title">關於我們</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Welcome to <strong>Serenity Spa</strong>, where relaxation meets rejuvenation. Nestled in the heart of the city, our sanctuary offers a peaceful escape from the daily grind.</p>
-                <p>With over 10 years of experience, our certified therapists use only premium organic products to provide you with an unforgettable spa journey. Whether you need deep tissue relief or a moment of pure tranquility, we tailor every treatment to your unique needs.</p>
-                <p>✨ <strong>Our Promise:</strong> Clean, safe, and personalized care in a serene atmosphere.</p>
+                <p>歡迎來到 <strong>逆齡重生術</strong> —— 結合尖端醫學美容科技與獨家調配精華，為您訂製專屬的肌膚逆齡方案。</p>
+                <p>我們使用專利 HD-DU 雙頻超聲波、電動無痛水光筆，以及多款醫學級精華（NCTF135HA、NOXRadiance、Complex 715 等），針對膠原彈性、肌膚屏障、水潤度進行全面提升。</p>
+                <p><strong>我們的承諾：</strong> 100% 活性營養導入，刺激皮膚吸收再生，不同功效不同活性，調配專屬你的需要。</p>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600" alt="Spa treatment room">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600" alt="醫學美容治療室">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
 <section id="services" class="section" style="background: #fffaf8;">
     <div class="container">
-        <h2 class="section-title">Our Signature Services</h2>
+        <h2 class="section-title">三大逆齡療程</h2>
         <div class="services-grid">
             <div class="service-card">
-                <i class="fas fa-spa"></i>
-                <h3>Aromatherapy Massage</h3>
-                <p>Essential oils combined with gentle pressure to calm your senses.</p>
-                <div class="price">$85 / 60 min</div>
+                <i class="fas fa-water"></i>
+                <h3>HD-DU 雙頻超聲波</h3>
+                <p>專利超聲波技術</p>
+                <p>膠原彈性・肌膚屏障<br>水潤度能力大提升</p>
             </div>
             <div class="service-card">
-                <i class="fas fa-hand-holding-heart"></i>
-                <h3>Deep Tissue Massage</h3>
-                <p>Targets muscle knots and tension for deep relief.</p>
-                <div class="price">$95 / 60 min</div>
+                <i class="fas fa-syringe"></i>
+                <h3>電動無痛水光筆</h3>
+                <p>100% 活性營養導入</p>
+                <p>刺激皮膚吸收再生<br>零痛感・高效滲透</p>
             </div>
             <div class="service-card">
-                <i class="fas fa-gem"></i>
-                <h3>Hydrating Facial</h3>
-                <p>Restore glow with organic serums and gentle exfoliation.</p>
-                <div class="price">$75 / 45 min</div>
+                <i class="fas fa-eye-dropper"></i>
+                <h3>醫學級精華</h3>
+                <p>獨家調配尾酒精華</p>
+                <p>不同功效不同活性<br>專屬你的需要</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 女性養生三點式 Section -->
+<section id="wellness" class="section" style="background: #fffaf8;">
+    <div class="container">
+        <h2 class="section-title">女性養生 · 三點式</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-1"></i>
+                <h3>第壹式 </h3>
+                <p>背部開穴</p>
+                <p>打通任督二脈<br>打通經絡，開啟循環</p>
             </div>
             <div class="service-card">
-                <i class="fas fa-hot-tub"></i>
-                <h3>Hot Stone Therapy</h3>
-                <p>Warm basalt stones melt away deep muscle stiffness.</p>
-                <div class="price">$110 / 75 min</div>
+                <i class="fa-solid fa-2"></i>
+                <h3>第貳式</h3>
+                <p>子宮卵巢逆齡</p>
+                <p>暖宮術・提升卵巢溫度<br>改善內分泌，寒排毒，婦科問題</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-3"></i>
+                <h3>第參式</h3>
+                <p>胸部護理</p>
+                <p>疏通乳腺<br>改善情緒・提升胸部彈性</p>
             </div>
         </div>
     </div>
@@ -459,71 +449,49 @@
 <!-- Booking Section -->
 <section id="booking" class="section">
     <div class="container">
-        <h2 class="section-title">Book Your Moment of Bliss</h2>
-        <div class="booking-container">
+        <h2 class="section-title">預約您的逆齡旅程</h2>
+        <div class="booking-container" style="grid-template-columns: 1fr; text-align: center;">
             <div class="booking-info">
-                <h3>Ready to relax?</h3>
-                <p>Fill out the form and we'll confirm your appointment via email within 2 hours.</p>
-                <div class="info-item">
+                <h3>💆🏻‍♀️ 準備好重生肌膚了嗎？</h3>
+                <p>直接透過 WhatsApp 與我們聯繫，專人為您安排預約。</p>
+                <div class="info-item" style="justify-content: center;">
                     <i class="fas fa-phone-alt"></i>
-                    <span>Call us: (555) 123-4567</span>
+                    <span>+852 9137 6887</span>
                 </div>
-                <div class="info-item">
+                <div class="info-item" style="justify-content: center;">
                     <i class="fas fa-envelope"></i>
-                    <span>hello@serenityspa.com</span>
+                    <span>hello@agelessspa.com</span>
                 </div>
-                <div class="info-item">
+                <div class="info-item" style="justify-content: center;">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>123 Wellness Ave, Suite 101, Your City</span>
+                    <span>荔枝角 地鐵站B1出口 永康街55號 金百盛中心 2301室</span>
                 </div>
-                <div class="booking-alert">
-                    <i class="fas fa-calendar-check"></i> Appointments sync with Google Calendar
-                </div>
+
+                <a href="https://wa.me/+85291376887?text=我想預約逆齡重生術療程" target="_blank" class="btn" style="background: #25d366; margin-top: 1rem;">
+                    <i class="fab fa-whatsapp"></i> 透過 WhatsApp 預約
+                </a>
+
+                <!-- Instagram button (new) -->
+                <a href="https://www.instagram.com/your-spa-handle" target="_blank" class="btn" style="background: #E4405F; margin-top: 1rem; display: inline-block; margin-left: 0.5rem;">
+                    <i class="fab fa-instagram"></i> 透過 Instagram 預約
+                </a>
             </div>
-            <form class="booking-form" action="https://formspree.io/f/xjkgqngq" method="POST">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
-                <select name="service" required>
-                    <option value="">Select a Service</option>
-                    <option>Aromatherapy Massage - $85</option>
-                    <option>Deep Tissue Massage - $95</option>
-                    <option>Hydrating Facial - $75</option>
-                    <option>Hot Stone Therapy - $110</option>
-                </select>
-                <input type="date" name="date" required>
-                <select name="time" required>
-                    <option value="">Preferred Time</option>
-                    <option>9:00 AM</option>
-                    <option>10:30 AM</option>
-                    <option>1:00 PM</option>
-                    <option>2:30 PM</option>
-                    <option>4:00 PM</option>
-                </select>
-                <textarea name="message" rows="3" placeholder="Special requests or notes..."></textarea>
-                <button type="submit" class="btn">Request Appointment</button>
-            </form>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
 <footer>
-    <p>© 2025 Serenity Spa. Designed with <i class="fas fa-heart" style="color:#e8b4b8;"></i> for your wellness.</p>
+    <p>© 2025 逆齡重生術 · 醫學級美容 spa · 用心訂製您的年輕光采</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">
-        <a href="#">Privacy Policy</a> | 
-        <a href="#">Instagram</a> | 
-        <a href="https://github.com/your-username" target="_blank">Developer Portfolio <i class="fab fa-github"></i></a>
+        <a href="https://github.com/kawingtam" target="_blank">開發者作品集 <i class="fab fa-github"></i></a>
     </p>
 </footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/15551234567?text=Hi%2C%20I'd%20like%20to%20book%20a%20spa%20appointment" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/+85291376887?text=我想預約逆齡重生術療程" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-    // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
