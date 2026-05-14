@@ -144,6 +144,7 @@ The result is a lightweight, professional landing page that can be deployed in m
 
 ## 🌟 Status
 ✅ Complete – ready to use as a live business website.
+
 🔧 Possible future improvements:
 
 Add a simple contact form (using Formspree or Getform)
@@ -155,8 +156,6 @@ Support for multiple languages (Chinese/English toggle)
 ## 📄 License
 MIT – you are free to use, modify, and distribute this code for personal or commercial projects.
 If you appreciate the work, please keep the footer credit link to the developer portfolio.
-
-text
 
 Just copy the entire block above into a file named `README.md` and save it in the same folder as your `index.html`.  
 The README is fully self‑contained and written in English, as requested.
