@@ -63,10 +63,11 @@ text
 
 ### 1. Clone or download the repository
 
-```bash
+bash
 git clone https://github.com/your-username/ageless-rejuvenation.git
 cd ageless-rejuvenation
-### 2. Open the page
+
+## 2. Open the page
 Simply double‑click index.html, or run a local server:
 
 bash
@@ -74,7 +75,7 @@ bash
 python -m http.server 8000
 Then visit http://localhost:8000.
 
-### 3. Customise for your business
+## 3. Customise for your business
 Edit the following details directly inside index.html:
 
 html
@@ -90,7 +91,7 @@ html
 <span>荔枝角 地鐵站B1出口 永康街55號 金百盛中心 2301室</span>
 Replace Unsplash images with your own photos (clinic, treatments, or staff).
 
-🎨 Customisation Guide
+## 🎨 Customisation Guide
 Primary colour – change #d9a38c (terracotta pink) in header, .btn, .service-card i, .section-title::after, etc.
 
 Fonts – update the Google Fonts link and the font-family in body / h1, h2, h3.
@@ -99,21 +100,21 @@ Services – add or remove cards inside .services-grid or the wellness section.
 
 Booking method – if you prefer a contact form, replace the WhatsApp buttons with a <form> (requires backend or a service like Formspree).
 
-🌍 Deployment
+## 🌍 Deployment
 Because the page is static, you can host it anywhere:
 
 Platform	Steps
 GitHub Pages	Push the repo → Settings → Pages → select main branch → Save
 Netlify	Drag & drop the index.html file onto Netlify’s dashboard
 Any web host	Upload index.html via FTP or file manager
-📸 Image Credits
+## 📸 Image Credits
 Hero background: Unsplash – Spa treatment
 
 About image: Unsplash – Aesthetic room
 
 Both are licensed under the Unsplash License (free for commercial use, no attribution required – though attribution is appreciated).
 
-💡 Why I Built This
+## 💡 Why I Built This
 This landing page was created to:
 
 Showcase premium spa treatments in a calm, trustworthy visual style.
@@ -126,7 +127,7 @@ Serve as a reusable template for similar wellness or beauty brands.
 
 It prioritises conversion, mobile usability, and brand storytelling.
 
-📝 Project Reflection
+## 📝 Project Reflection
 Building this page reinforced skills in:
 
 Responsive layout design (Flexbox, Grid, media queries)
@@ -141,7 +142,7 @@ Writing self‑contained HTML/CSS/JS that works anywhere
 
 The result is a lightweight, professional landing page that can be deployed in minutes.
 
-🌟 Status
+## 🌟 Status
 ✅ Complete – ready to use as a live business website.
 🔧 Possible future improvements:
 
@@ -151,7 +152,7 @@ Include a before/after gallery
 
 Support for multiple languages (Chinese/English toggle)
 
-📄 License
+## 📄 License
 MIT – you are free to use, modify, and distribute this code for personal or commercial projects.
 If you appreciate the work, please keep the footer credit link to the developer portfolio.
 
