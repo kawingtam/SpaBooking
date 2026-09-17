@@ -1,145 +1,354 @@
-# 🌸 Ageless Rejuvenation – Medical‑Grade Beauty Spa Landing Page
+# 🌷 SpaBooking – Beauty & Wellness Booking Website
 
-A responsive, modern one‑page website for a luxury medical spa.  
-The page presents premium anti‑aging treatments, a unique “女性養生・三點式” wellness concept, and direct booking via WhatsApp & Instagram.
+A soft, elegant, and responsive booking website designed for a spa / beauty studio. ✨
 
-Built with pure HTML/CSS/JS – no frameworks, no backend. Ideal for quick deployment on GitHub Pages, Netlify, or any static hosting.
+SpaBooking creates a simple and relaxing experience for customers to explore beauty and wellness services, view treatment information, and make an appointment online.
 
-![Hero Screenshot](https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&auto=format)  
-*Hero image (Unsplash)*
+The project focuses on a **clean visual experience, easy navigation, and simple booking flow** while keeping the website lightweight and easy to maintain.
 
 ---
 
 ## ✨ Project Highlights
 
-- **Fully responsive** – adapts seamlessly from desktop to mobile.
-- **Smooth scroll navigation** – one lightweight JavaScript helper.
-- **WhatsApp floating button** – always visible, pre‑fills a booking message.
-- **Clear service sections** – three core treatments + three wellness rituals.
-- **Direct booking integration** – contact via WhatsApp or Instagram with one click.
-- **No dependencies** – pure HTML/CSS, Font Awesome icons, Google Fonts.
-- **Privacy‑friendly** – no forms, no data storage, just user‑initiated chat.
+- 🌸 **Soft & calming design** – created for a beauty and wellness brand
+- 📱 **Responsive layout** – works across desktop, tablet, and mobile
+- 💆🏻‍♀️ **Service showcase** – clearly presents available spa treatments
+- 📅 **Booking experience** – makes appointment requests simple and intuitive
+- 🎀 **User-friendly interface** – minimal steps and easy navigation
+- 💻 **Lightweight front end** – simple HTML, CSS, and JavaScript structure
+- 🌐 **GitHub Pages ready** – easy to publish and update
+- 🛠️ **Easy to customise** – services, pricing, images, colours, and text can be changed easily
+
+---
+
+## 🌿 Website Experience
+
+The website is designed to feel like walking into a relaxing spa:
+
+> soft colours · simple navigation · calming visuals · easy booking ✨
+
+Instead of overwhelming visitors with too much information, the design focuses on guiding them naturally from:
+
+**Discover → Explore → Select → Book**
+
+---
+
+## 💖 Main Features
+
+| Section | What It Does |
+|---|---|
+| 🌷 **Home / Hero** | Introduces the spa and creates the first visual impression |
+| 💆🏻‍♀️ **Services** | Displays available beauty and wellness treatments |
+| ✨ **Treatment Details** | Gives customers more information about each service |
+| 📅 **Booking** | Allows users to begin the appointment booking process |
+| 🕐 **Date & Time** | Helps customers choose their preferred appointment schedule |
+| 👤 **Customer Details** | Collects the information needed for the appointment |
+| 📱 **Responsive Design** | Adapts the experience for phones, tablets, and desktops |
+
+---
+
+## 🎨 Design Direction
+
+The visual direction of SpaBooking focuses on a calm and polished beauty aesthetic.
+
+### 🌸 Style
+
+- Soft
+- Feminine
+- Minimal
+- Relaxing
+- Modern
+- Elegant
+
+### 🫧 UI Approach
+
+The interface uses:
+
+- generous spacing
+- rounded elements
+- clean typography
+- soft visual hierarchy
+- simple buttons
+- intuitive booking steps
+
+The goal is to make the website feel welcoming without making the interface complicated.
 
 ---
 
 ## 🗂️ Project Structure
+
+```text
+SpaBooking/
+│
+├── index.html
+├── style.css
+├── script.js
+│
+├── assets/
+│   ├── images/
+│   └── icons/
+│
+└── README.md
 ```
-ageless-rejuvenation/
-├── index.html          # Complete landing page (inline CSS & JS)
-└── README.md           # Project documentation (this file)
-```
 
-
-> Open `index.html` directly in any browser – no build steps required.
-
----
-
-## 🧰 Features Overview
-
-| Section                  | Content                                                                 |
-|--------------------------|-------------------------------------------------------------------------|
-| **Hero**                 | Brand tagline + call‑to‑action button to booking section               |
-| **About**                | Technology (HD‑DU ultrasound, needle‑free pen, medical‑grade serums)   |
-| **三大逆齡療程**          | HD‑DU超声 / 電動無痛水光筆 / 醫學級精華                                 |
-| **女性養生・三點式**      | Back opening, womb & ovary care, breast wellness                       |
-| **預約 (Booking)**        | Contact info, WhatsApp & Instagram direct booking buttons              |
-| **Footer**               | Copyright and link to developer portfolio                              |
-| **Floating action button** | Sticky WhatsApp icon for instant chat                                |
+> 💡 The exact structure may grow as additional booking features or assets are added.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology          | Purpose                                    |
-|---------------------|--------------------------------------------|
-| HTML5               | Semantic structure                         |
-| CSS3                | Flexbox, Grid, custom animations, media queries |
-| Font Awesome 6      | Icons for services, contact, social        |
-| Google Fonts        | Playfair Display (headings) + Poppins (body) |
-| Vanilla JavaScript  | Smooth scroll (no external libraries)      |
+| Technology | Purpose |
+|---|---|
+| **HTML5** | Website structure and content |
+| **CSS3** | Layout, styling, responsiveness, and animations |
+| **JavaScript** | Interactive behaviour and booking functionality |
+| **Git** | Version control |
+| **GitHub** | Repository hosting |
+| **GitHub Pages** | Static website deployment |
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone or download the repository
+### 1️⃣ Clone the repository
 
-bash
-git clone https://github.com/your-username/ageless-rejuvenation.git
-cd ageless-rejuvenation
+```bash
+git clone YOUR_REPOSITORY_URL
+```
 
-### 2. Open the page
-Simply double‑click index.html, or run a local server:
+Then enter the project folder:
 
-> python -m http.server 8000
+```bash
+cd SpaBooking
+```
 
-### 3. Customise for your business
-Replace Unsplash images with your own photos (clinic, treatments, or staff).
+---
 
-## 🎨 Customisation Guide
-Primary colour – change #d9a38c (terracotta pink) in header, .btn, .service-card i, .section-title::after, etc.
+### 2️⃣ Open the website
 
-Fonts – update the Google Fonts link and the font-family in body / h1, h2, h3.
+For a simple preview, open:
 
-Services – add or remove cards inside .services-grid or the wellness section.
+```text
+index.html
+```
 
-Booking method – if you prefer a contact form, replace the WhatsApp buttons with a form (requires backend or a service like Formspree).
+directly in your browser.
 
-## 🌍 Deployment
-Because the page is static, you can host it anywhere:
+You can also run a local server:
 
-Platform	Steps
-GitHub Pages	Push the repo → Settings → Pages → select main branch → Save
-Netlify	Drag & drop the index.html file onto Netlify’s dashboard
-Any web host	Upload index.html via FTP or file manager
-## 📸 Image Credits
-Hero background: Unsplash – Spa treatment
+```bash
+python3 -m http.server 8000
+```
 
-About image: Unsplash – Aesthetic room
+Then open:
 
-Both are licensed under the Unsplash License (free for commercial use, no attribution required – though attribution is appreciated).
+```text
+http://localhost:8000
+```
+
+---
+
+## 🌷 Making Changes
+
+After editing the website, save your files and check the changes locally.
+
+When everything looks good:
+
+```bash
+git status
+```
+
+Add your changes:
+
+```bash
+git add .
+```
+
+Commit them:
+
+```bash
+git commit -m "update webpage"
+```
+
+Push the update:
+
+```bash
+git push
+```
+
+And that's it. ✨
+
+If GitHub Pages is enabled, the live website will update after the new version is deployed.
+
+---
+
+## 🌐 GitHub Pages Deployment
+
+SpaBooking can be hosted for free using GitHub Pages.
+
+### Setup
+
+1. Open the repository on GitHub
+2. Go to **Settings**
+3. Select **Pages**
+4. Under **Build and deployment**, choose:
+
+```text
+Deploy from a branch
+```
+
+5. Select:
+
+```text
+Branch: main
+Folder: /root
+```
+
+6. Click **Save**
+
+GitHub will generate a public website link for the project. 🌎✨
+
+---
+
+## 🎀 Customisation
+
+The website is designed to be easy to customise for different spa or beauty businesses.
+
+### 🌸 Services
+
+Update treatment names, descriptions, durations, or pricing inside the service section.
+
+### 🎨 Colours
+
+Change the main colour variables in the CSS to create a completely different visual identity.
+
+For example:
+
+```css
+:root {
+  --primary: #c99ba3;
+  --background: #fffaf8;
+  --text: #463b3d;
+}
+```
+
+### 🖼️ Images
+
+Replace the existing images inside:
+
+```text
+assets/images/
+```
+
+with real spa, treatment, staff, or product photos.
+
+### ✏️ Text
+
+Business information and service descriptions can be edited directly inside the HTML.
+
+---
 
 ## 💡 Why I Built This
-This landing page was created to:
 
-Showcase premium spa treatments in a calm, trustworthy visual style.
+SpaBooking was created as a practical web project focused on combining **design and functionality**.
 
-Reduce friction for booking – every call‑to‑action leads directly to WhatsApp/Instagram.
+Instead of building only a visual landing page, I wanted to explore how a real customer might interact with a service-based business online.
 
-Avoid backend complexity – the page is self‑contained and maintenance‑free.
+The project focuses on making the booking journey feel simple:
 
-Serve as a reusable template for similar wellness or beauty brands.
+```text
+Customer visits website
+        ↓
+Explores services
+        ↓
+Chooses a treatment
+        ↓
+Selects an appointment
+        ↓
+Provides booking information
+        ↓
+Booking request ✨
+```
 
-It prioritises conversion, mobile usability, and brand storytelling.
+The goal was to reduce unnecessary steps while maintaining a polished and relaxing experience.
+
+---
 
 ## 📝 Project Reflection
-This landing page was built **for a friend to help launch her  spa business**.  
-The goal was to create a professional, trustworthy online presence quickly, without backend complexity or ongoing maintenance costs.
 
-Through this project, I practiced and reinforced:
+This project gave me an opportunity to practice building a website around a real business workflow rather than only focusing on visual design.
 
-- **Responsive layout design** (Flexbox, Grid, media queries) – ensuring the site looks great on phones, tablets, and desktops.
-- **CSS animations** (`fadeInUp`) – adding subtle visual engagement without hurting performance.
-- **Integrating third‑party chat links** (WhatsApp, Instagram) – enabling direct booking without building a contact form or backend.
-- **Structuring a one‑page site** – organising content into a clear information hierarchy (hero → about → services → wellness → booking).
-- **Writing self‑contained HTML/CSS/JS** – no frameworks, no build steps, just a single file that works anywhere.
+Through SpaBooking, I practiced:
 
-The result is a **lightweight, professional landing page** that can be deployed in minutes and is easy for my friend to update (just edit the HTML).  
+- 🌐 Structuring a complete front-end website
+- 📱 Building responsive layouts
+- 🎨 Creating a consistent visual design system
+- 🧭 Improving navigation and information hierarchy
+- 📅 Thinking through a booking user journey
+- 💻 Adding interaction with JavaScript
+- 🧹 Keeping the project structure organised
+- 🚀 Deploying and maintaining a website through GitHub
 
-It gives her a real online storefront to share with potential clients, take bookings via chat, and build her brand – all without paying for expensive web development or monthly hosting fees.
+One of the main goals was to keep the experience simple.
 
-## 🌟 Status
-✅ Complete – ready to use as a live business website.
+A booking website does not need to feel complicated — users should immediately understand **what the business offers, what they can book, and what they need to do next.**
 
-🔧 Possible future improvements:
+---
 
- - Add a simple contact form (using Formspree or Getform)
- - Include a before/after gallery
- - Support for multiple languages (Chinese/English toggle)
+## 🌟 Current Status
+
+### ✅ Working on
+
+- Website layout
+- Responsive design
+- Service presentation
+- Booking experience
+- User interface styling
+
+### 🌱 Possible Future Improvements
+
+- 📧 Booking confirmation emails
+- 📅 Google Calendar integration
+- 💳 Online payment
+- 👤 Customer accounts
+- 🔐 Admin dashboard
+- 🗓️ Real-time appointment availability
+- 🔔 Appointment reminders
+- ❌ Appointment cancellation
+- 🔄 Appointment rescheduling
+- 🌎 Multiple language support
+- 📊 Booking analytics
+
+---
+
+## 🧠 What I Learned
+
+Building SpaBooking reinforced an important idea:
+
+> Good design is not only about making something beautiful — it is also about making the next action obvious.
+
+For a booking website, every design decision should eventually help the customer answer three questions:
+
+**What can I book?**
+
+**When can I book it?**
+
+**How do I complete my booking?**
+
+🌷
+
+---
 
 ## 📄 License
-MIT – you are free to use, modify, and distribute this code for personal or commercial projects.
-If you appreciate the work, please keep the footer credit link to the developer portfolio.
 
-Just copy the entire block above into a file named `README.md` and save it in the same folder as your `index.html`.  
-The README is fully self‑contained and written in English, as requested.
+This project is intended for personal, educational, and portfolio use.
+
+Feel free to modify the design and code for your own projects.
+
+---
+
+## 💕 SpaBooking
+
+**Relax. Refresh. Book.**
+
+Made with HTML, CSS, JavaScript & a little bit of ✨
