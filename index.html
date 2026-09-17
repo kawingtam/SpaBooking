@@ -11,369 +11,38 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #5a3e45;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            background-color: #fffaf8;
-        }
-
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Header & Navigation — new color */
-        header {
-            background: #d9a38c;  /* Warm terracotta pink */
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .logo span {
-            color: #fef0e6;
-            font-size: 0.9rem;
-            font-weight: 300;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(90, 62, 69, 0.3), rgba(90, 62, 69, 0.2)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 70px;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #d9a38c;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .btn:hover {
-            background: #c58973;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(217, 163, 140, 0.3);
-        }
-
-        .section {
-            padding: 5rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #5a3e45;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #d9a38c;
-            margin: 0.5rem auto 0;
-            border-radius: 3px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(217, 163, 140, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #f5e6e3;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: #d9a38c;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #5a3e45;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            margin: 0.5rem 0;
-        }
-
-        /* No price section */
-        .booking-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background: #fff5f0;
-            padding: 3rem;
-            border-radius: 30px;
-            border: 1px solid #f0e0db;
-        }
-
-        .booking-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #5a3e45;
-        }
-
-        .booking-info p {
-            margin-bottom: 1.5rem;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-item i {
-            font-size: 1.5rem;
-            color: #d9a38c;
-        }
-
-        .booking-form input,
-        .booking-form select,
-        .booking-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #f0e0db;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            background: white;
-        }
-
-        .booking-form input:focus,
-        .booking-form select:focus,
-        .booking-form textarea:focus {
-            outline: none;
-            border-color: #d9a38c;
-            box-shadow: 0 0 0 3px rgba(217, 163, 140, 0.2);
-        }
-
-        .booking-alert {
-            background: #faf0ed;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .booking-alert i {
-            color: #d9a38c;
-        }
-
-        footer {
-            background: #f5e6e3;
-            color: #7a5a60;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer a {
-            color: #d9a38c;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #c58973;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links {
-                gap: 1.5rem;
-            }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .about-content,
-            .booking-container {
-                grid-template-columns: 1fr;
-            }
-            .section {
-                padding: 3rem 1rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .booking-container {
-                padding: 1.5rem;
-            }
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-            z-index: 100;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-        
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    <nav>
-        <div class="logo">逆齡重生術 <span>醫學級美容 spa</span></div>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+</button>
+<dialog id="menu" aria-label="主選單">
+    <div class="logo">逆齡重生術 <span>醫學級美容 spa</span></div>
+    <nav aria-label="主導覽">
         <ul class="nav-links">
             <li><a href="#home">首頁</a></li>
             <li><a href="#about">關於</a></li>
             <li><a href="#services">服務</a></li>
-            <li><a href="#booking">預約</a></li>
+            <li><details><summary>產品</summary><div>
+                <a href="products.html#products">所有產品</a>
+                <a href="products.html#category-serum">精華護理</a>
+                <a href="products.html#category-mask">面膜護理</a>
+                <a href="products.html#category-body">身體護理</a>
+            </div></details></li>
+            <li><a href="products.html#cart">購物籃（<span id="cart-count">0</span>）</a></li>
+            <li><a href="#booking">預約 / 聯絡店主</a></li>
         </ul>
     </nav>
-</header>
+</dialog>
 
 <section id="home" class="hero">
     <div class="hero-content">
         <h1>肌底 · 逆齡 · 重生術</h1>
         <p>專利 HD-DU 雙頻超聲波技術 | 電動無痛水光筆 | 醫學級精華</p>
         <a href="#booking" class="btn">立即預約 →</a>
+        <a href="products.html" class="btn">探索護理產品 →</a>
     </div>
 </section>
 
@@ -387,7 +56,7 @@
                 <p><strong>我們的承諾：</strong> 100% 活性營養導入，刺激皮膚吸收再生，不同功效不同活性，調配專屬你的需要。</p>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600" alt="醫學美容治療室">
+                <img src="spa-bed.jpeg" alt="店內實景：暖色窗簾旁的雙人護理空間" loading="lazy" width="1530" height="1530">
             </div>
         </div>
     </div>
@@ -446,11 +115,31 @@
     </div>
 </section>
 
+<section id="shop-preview" class="section" aria-labelledby="shop-preview-title">
+    <div class="container">
+        <h2 id="shop-preview-title" class="section-title">日常護理產品</h2>
+        <p class="shop-intro">把照顧延續到日常，探索精華、面膜與身體護理系列。</p>
+        <div class="services-grid category-links">
+            <a class="service-card" href="products.html#category-serum">
+                <h3>精華護理</h3><p>從一滴精華開始日常護理 →</p>
+            </a>
+            <a class="service-card" href="products.html#category-mask">
+                <h3>面膜護理</h3><p>留一段時間，慢慢放鬆 →</p>
+            </a>
+            <a class="service-card" href="products.html#category-body">
+                <h3>身體護理</h3><p>探索沐浴與身體護理系列 →</p>
+            </a>
+        </div>
+        <p class="shop-intro"><a href="products.html" class="btn">瀏覽所有產品 →</a></p>
+    </div>
+</section>
+
 <!-- Booking Section -->
 <section id="booking" class="section">
     <div class="container">
         <h2 class="section-title">預約您的逆齡旅程</h2>
-        <div class="booking-container" style="grid-template-columns: 1fr; text-align: center;">
+        <div class="booking-container">
+            <figure class="visit-photo"><img src="spa-outside.jpeg" alt="店內實景：窗邊護理床、綠植與城市景觀" loading="lazy" width="900" height="1600"><figcaption>窗邊的一刻，留給自己。</figcaption></figure>
             <div class="booking-info">
                 <h3>💆🏻‍♀️ 準備好重生肌膚了嗎？</h3>
                 <p>直接透過 WhatsApp 與我們聯繫，專人為您安排預約。</p>
@@ -493,17 +182,7 @@
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-</script>
+<script src="app.js" defer></script>
 
 </body>
 </html>

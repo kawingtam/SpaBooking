@@ -1,0 +1,361 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #5a3e45;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            background-color: #fffaf8;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* The same toggle moves to the drawer's right edge when open. */
+        .menu-toggle {
+            position: fixed; top: 16px; left: 16px; z-index: 1001;
+            width: 48px; height: 48px; border: 0; border-radius: 50%;
+            background: #5a3e45; color: white; cursor: pointer;
+            display: grid; place-content: center; gap: 5px;
+            transition: left .25s;
+        }
+        .menu-toggle span { width: 22px; height: 2px; background: currentColor; transition: transform .25s; }
+        .menu-toggle[aria-expanded="true"] { left: calc(min(340px, 100vw) - 64px); }
+        .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+        #menu {
+            position: fixed; inset: 0 auto 0 0; margin: 0;
+            width: min(340px, 100vw); max-width: none; height: 100%; max-height: none;
+            padding: 80px 24px 24px; border: 0; background: #fff5f0; color: #5a3e45;
+            overflow-y: auto;
+        }
+        #menu::backdrop { background: rgb(0 0 0 / .35); }
+        body:has(#menu[open]) { overflow: hidden; }
+        .logo { font-size: 1.8rem; font-weight: 600; margin-bottom: 24px; }
+        .logo span { display: block; font-size: .9rem; }
+        .nav-links { list-style: none; }
+        .nav-links a, .nav-links summary { display: block; padding: 12px 0; color: inherit; cursor: pointer; }
+        .nav-links summary { display: list-item; }
+        .nav-links details div { padding-left: 20px; }
+        button, input { font: inherit; }
+        :focus-visible { outline: 3px solid #5a3e45; outline-offset: 4px; }
+        .category-links { margin-bottom: 32px; }
+        .category-links a { color: inherit; text-decoration: none; }
+        .product-category { scroll-margin-top: 80px; margin-bottom: 32px; }
+        .product-category h3 { margin-bottom: 16px; }
+        .cart-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0e0db; }
+        .cart-row strong { flex: 1 1 180px; }
+        .cart-row input { width: 72px; padding: 8px; }
+        .cart-row button { padding: 8px 16px; cursor: pointer; }
+        #cart-status, #cart-items { margin-bottom: 24px; }
+        #checkout { background: #216e40; animation: none; }
+        .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(35, 25, 22, .28), rgba(35, 25, 22, .48)), url('spa-cozy.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #d9a38c;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn:hover {
+            background: #c58973;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(217, 163, 140, 0.3);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #5a3e45;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #d9a38c;
+            margin: 0.5rem auto 0;
+            border-radius: 3px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(217, 163, 140, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f5e6e3;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(217, 163, 140, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #d9a38c;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #5a3e45;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        /* No price section */
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: #fff5f0;
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid #f0e0db;
+        }
+
+        .booking-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #5a3e45;
+        }
+
+        .booking-info p {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: #d9a38c;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #f0e0db;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            background: white;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            outline: none;
+            border-color: #d9a38c;
+            box-shadow: 0 0 0 3px rgba(217, 163, 140, 0.2);
+        }
+
+        .booking-alert {
+            background: #faf0ed;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .booking-alert i {
+            color: #d9a38c;
+        }
+
+        footer {
+            background: #f5e6e3;
+            color: #7a5a60;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: #d9a38c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #c58973;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-content,
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .booking-container {
+                padding: 1.5rem;
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 100;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+    
+        .hero-content { padding: 24px; }
+        .hero-content .btn { margin: 6px; }
+        .about-image img { height: auto; display: block; }
+        .visit-photo img { width: 100%; max-height: 540px; object-fit: cover; object-position: center 60%; border-radius: 20px; display: block; }
+        .visit-photo figcaption { padding-top: 12px; text-align: center; }
+        .booking-container { align-items: center; }
+        #products { padding-top: 100px; }
+        .shop-eyebrow, .shop-intro { text-align: center; margin-bottom: 20px; }
+        .shop-eyebrow { letter-spacing: .18em; font-size: .8rem; }
+        #products .section-title { margin-bottom: 20px; }
+        .category-links { margin-top: 24px; }
+        .category-links .service-card { padding: 20px; }
+        .product-category { margin-top: 32px; }
+        .product-category .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .product-card { padding: 20px; text-align: left; }
+        .product-card h4 { font-size: 1.25rem; }
+        .product-card .btn { margin-top: 16px; animation: none; background: #765247; }
+        .product-art { height: 240px; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 30%, #fffcf7, var(--paper)); border-radius: 12px; margin-bottom: 20px; }
+        .product-pack { position: relative; width: 88px; height: 135px; border-radius: 12px 12px 18px 18px; background: linear-gradient(100deg, #ffffff80, transparent 45%, #00000018), var(--bottle); box-shadow: 12px 18px 20px #5a3e4520; display: grid; align-content: center; text-align: center; color: #45342e; }
+        .product-pack::before { content: ''; position: absolute; top: -28px; left: 23px; width: 42px; height: 30px; background: #66554c; border-radius: 7px 7px 0 0; }
+        .product-pack b { font-size: 11px; letter-spacing: .12em; }
+        .product-pack small { font-size: 9px; margin-top: 10px; }
+        .product-art.mask .product-pack { width: 124px; height: 160px; border-radius: 2px; border-top: 8px double #ffffff80; border-bottom: 8px double #ffffff80; }
+        .product-art.mask .product-pack::before { display: none; }
+        .product-art.body .product-pack { width: 105px; height: 145px; border-radius: 20px 20px 12px 12px; }
+        .product-art.body .product-pack::before { left: 29px; width: 48px; height: 20px; top: -20px; }
+        @media (max-width: 600px) {
+            .product-category .services-grid { grid-template-columns: 1fr; }
+            .product-art { height: 220px; }
+        }

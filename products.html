@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品 | 逆齡重生術</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+</button>
+<dialog id="menu" aria-label="主選單">
+    <div class="logo">逆齡重生術 <span>醫學級美容 spa</span></div>
+    <nav aria-label="主導覽">
+        <ul class="nav-links">
+            <li><a href="index.html#home">首頁</a></li>
+            <li><a href="index.html#about">關於</a></li>
+            <li><a href="index.html#services">服務</a></li>
+            <li><details><summary>產品</summary><div>
+                <a href="#products">所有產品</a>
+                <a href="#category-serum">精華護理</a>
+                <a href="#category-mask">面膜護理</a>
+                <a href="#category-body">身體護理</a>
+            </div></details></li>
+            <li><a href="#cart">購物籃（<span id="cart-count">0</span>）</a></li>
+            <li><a href="index.html#booking">預約 / 聯絡店主</a></li>
+        </ul>
+    </nav>
+</dialog>
+
+<!-- Edit categories here; edit the example catalog in app.js. -->
+<section id="products" class="section">
+    <div class="container">
+        <p class="shop-eyebrow">HOME CARE · 日常護理</p>
+        <h1 class="section-title">把照顧，延續到日常</h1>
+        <p class="shop-intro">從一滴精華到每天的身體護理，探索屬於你的放鬆時刻。</p>
+        <p class="booking-alert">體驗用示例目錄：包裝、規格與介紹均為佔位資料，可試加入購物籃；實際產品、價格及庫存請向店主確認。</p>
+        <div class="services-grid category-links">
+            <a class="service-card" href="#category-serum"><h3>精華護理</h3><p>探索精華產品 →</p></a>
+            <a class="service-card" href="#category-mask"><h3>面膜護理</h3><p>探索面膜產品 →</p></a>
+            <a class="service-card" href="#category-body"><h3>身體護理</h3><p>探索身體護理產品 →</p></a>
+        </div>
+        <p><a href="#cart" style="color: inherit;">查看購物籃 / 聯絡店主 →</a></p>
+        <div id="category-serum" class="product-category"><h3>精華護理</h3><div class="services-grid"></div></div>
+        <div id="category-mask" class="product-category"><h3>面膜護理</h3><div class="services-grid"></div></div>
+        <div id="category-body" class="product-category"><h3>身體護理</h3><div class="services-grid"></div></div>
+    </div>
+</section>
+<section id="cart" class="section">
+    <div class="container">
+        <h2 class="section-title">購物籃</h2>
+        <p>確認產品與數量後，開啟 WhatsApp，把清單傳給店主確認價格、庫存及付款方式。這不是已付款或已確認的訂單。</p>
+        <p id="cart-status" role="status"></p>
+        <div id="cart-items"></div>
+        <button id="checkout" class="btn" type="button" disabled>透過 WhatsApp 聯絡店主</button>
+        <p>會預填產品清單；請在 WhatsApp 確認並按傳送。購物籃會保留，方便繼續修改。</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 逆齡重生術 · 醫學級美容 spa · 用心訂製您的年輕光采</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        <a href="https://kawingtam.github.io/" target="_blank">開發者作品集 <i class="fab fa-github"></i></a>
+    </p>
+</footer>
+
+<a href="https://wa.me/+85291376887?text=我想預約逆齡重生術療程" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="app.js" defer></script>
+
+</body>
+</html>
