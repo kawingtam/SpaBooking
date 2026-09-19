@@ -7,10 +7,10 @@ This remains one vanilla HTML/CSS/JavaScript GitHub Pages website. Supabase prov
 ## 1. Create the backend and owner
 
 1. Create a Supabase project in an account you control. Choose the appropriate region and keep the generated database password private.
-2. In Authentication settings, keep Email/password authentication enabled. Disable **Allow new users to sign up** (the label may appear under Sign In / Providers or Auth settings). Disable anonymous sign-ins and unused social providers.
-3. In Authentication → Users → Add user → Create user, create the owner's email/password account. Confirm the email there for this manually provisioned account. Give the credentials to the owner privately; do not add them to this repository.
+2. The owner UI accepts only an admin password and requires it again after every refresh. Before production, add a small HTTPS backend verification endpoint that validates that password server-side and returns a short-lived Supabase session. Put only its public URL in `adminLoginEndpoint`; never put the password or owner email in frontend code.
+3. In Authentication → Users → Add user → Create user, create the owner account used by that endpoint. Keep its identity and credentials server-side. Disable public sign-up, anonymous sign-in and unused providers.
 4. Copy that user's UUID.
-5. In Auth URL Configuration, set Site URL to `https://kawingtam.github.io/SpaBooking/`. This login uses email/password directly and does not require an OAuth redirect. If you later use Supabase recovery emails, configure and test that recovery flow separately; this interface does not include password reset.
+5. In Auth URL Configuration, set Site URL to `https://kawingtam.github.io/SpaBooking/`. The admin page stores no session across page loads.
 
 ## 2. Run the single setup file
 
@@ -43,7 +43,8 @@ Find the Project URL and **publishable key** in the project's Connect dialog or 
 ```js
 window.SPA_CONFIG = {
     url: 'https://YOUR_PROJECT.supabase.co',
-    publishableKey: 'sb_publishable_YOUR_PUBLIC_KEY'
+    publishableKey: 'sb_publishable_YOUR_PUBLIC_KEY',
+    adminLoginEndpoint: 'https://YOUR_SECURE_PASSWORD_VERIFICATION_ENDPOINT'
 };
 ```
 
@@ -99,7 +100,7 @@ This executes the actual setup SQL in PostgreSQL with minimal Supabase-provided 
 - The live catalog is read from Supabase on page load, back-navigation and the Reload Products button. No realtime subscription or background polling.
 - Files are uploaded under unique names before saving the product, avoiding stale image caches. Old managed images are removed after successful replacement/deletion. Failed/abandoned or ambiguous saves can leave an unused image; automatic sweeping is deliberately omitted to avoid deleting an image whose save actually committed. Add a cleanup job only if usage warrants it.
 - A single owner workflow is assumed. No simultaneous-editor conflict UI, inventory, prices, order database, customer accounts or analytics.
-- Sessions use the Supabase client's normal persistence; passwords are submitted to Auth and are never written by the app to storage or the product table.
+- Admin sessions are memory-only. The password is sent only to the configured HTTPS verification endpoint and is never written by the app to storage or the product table.
 
 ## Official references
 

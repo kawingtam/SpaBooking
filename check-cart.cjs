@@ -47,6 +47,11 @@ console.log('PASS: separate pages, six unique products, local assets and navigat
 
 const add = script.slice(script.indexOf('function addToCart('), script.indexOf('function productArtwork('));
 vm.runInContext('function saveCart() {}' + add, context);
+assert.equal(evaluate('priceText({price:28})'), '$28.00');
+assert.equal(evaluate('priceText({price:"18.50"})'), '$18.50');
+assert.equal(evaluate('priceText({price:null})'), '價格請洽店主');
+assert.equal(evaluate('priceText({})'), '價格請洽店主');
+assert.equal(evaluate('priceText({price:""})'), '價格請洽店主');
 evaluate('cart = {}; addToCart("serum-1"); addToCart("serum-1")');
 assert.equal(evaluate('cart["serum-1"]'), 2);
 evaluate('cart["serum-1"] = 99; addToCart("serum-1"); addToCart("unknown")');
@@ -65,17 +70,17 @@ const loadingContext = vm.createContext({URL, URLSearchParams, AbortSignal,
     document:{getElementById:id=>nodes[id]}, console:{error(){}},
     window:{SPA_CONFIG:{url:'https://example.supabase.co',publishableKey:'public'}},
     localStorage:{getItem:()=>stored,setItem:(_,value)=>stored=value},
-    fetch:async url=>{requestURL=url; if(failed) throw Error('offline'); return {ok:true,json:async()=>[{id:'serum-1',title:'Serum'}]};}
+    fetch:async url=>{requestURL=url; if(failed) throw Error('offline'); return {ok:true,json:async()=>[{id:'serum-1',name:'Serum'}]};}
 });
 vm.runInContext('let products=[], cart={},catalogReady=false,catalogLoading=false; const cartKey="ageless-spa-cart", detail=null; function renderProducts(){}; function saveCart(){localStorage.setItem(cartKey,JSON.stringify(cart));}'+validation+script.slice(script.indexOf('async function loadProducts()'),script.indexOf("    document.getElementById('retry-products')")),loadingContext);
 (async()=>{
     await vm.runInContext('loadProducts()',loadingContext);
     assert.equal(stored,'{"serum-1":2}');
-    assert.equal(requestURL.searchParams.get('active'),'eq.true');
+    assert.equal(requestURL.searchParams.get('visible'),'eq.true');
     assert.equal(requestURL.searchParams.get('order'),'sort_order.asc,id.asc');
     failed=true;await vm.runInContext('loadProducts()',loadingContext);
     assert.equal(stored,'{"serum-1":2}');
     assert.equal(vm.runInContext('catalogReady',loadingContext),false);
     assert.match(nodes['products-status'].textContent,/暫時未能載入/);
-    console.log('PASS: active-only ordered query, stale cart pruning, outage preserves localStorage and disables checkout.');
+    console.log('PASS: visible-only ordered query, stale cart pruning, outage preserves localStorage and disables checkout.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

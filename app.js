@@ -100,12 +100,21 @@
         saveCart('已加入' + product.name + '。');
         return true;
     }
+    function priceText(product) {
+        const price = Number(product.price);
+        return product.price !== null && product.price !== '' && Number.isFinite(price) && price >= 0
+            ? '$' + price.toFixed(2) : '價格請洽店主';
+    }
     function productArtwork(product) {
         const art = document.createElement('div');
         art.className = 'product-art ' + product.category;
-        if (product.image_url) {
+        if (product.image_path) {
             const img = document.createElement('img');
-            img.src = product.image_url; img.alt = product.name; img.loading = 'lazy';
+            img.src = window.SPA_PREVIEW ? product.image_path : new URL('/storage/v1/object/public/product-images/' + product.image_path.split('/').map(encodeURIComponent).join('/'), window.SPA_CONFIG.url).href;
+            img.alt = product.name; img.loading = 'lazy';
+            art.style.setProperty('--image-zoom', product.image_zoom || 1);
+            art.style.setProperty('--image-x', (product.image_position_x ?? 50) + '%');
+            art.style.setProperty('--image-y', (product.image_position_y ?? 50) + '%');
             img.addEventListener('error', () => { art.textContent = '圖片暫未提供'; });
             art.append(img);
         } else {
@@ -125,17 +134,10 @@
         content.replaceChildren(productArtwork(product));
         const title = document.createElement('h2'); title.id = 'product-detail-title'; title.textContent = product.name;
         content.append(title);
-        for (const [heading, text] of [['', product.size], ['', product.full_description], ['使用方法', product.usage]]) {
+        for (const [heading, text] of [['', product.size], ['', product.full_description]]) {
             if (!text?.trim()) continue;
             if (heading) { const h = document.createElement('h3'); h.textContent = heading; content.append(h); }
             const paragraph = document.createElement('p'); paragraph.textContent = text; content.append(paragraph);
-        }
-        const highlights = (product.highlights || '').split('\n').map(line => line.trim()).filter(Boolean);
-        if (highlights.length) {
-            const h = document.createElement('h3'); h.textContent = '產品特色';
-            const list = document.createElement('ul');
-            for (const text of highlights) { const li = document.createElement('li'); li.textContent = text; list.append(li); }
-            content.append(h, list);
         }
         const add = document.createElement('button'); add.className = 'btn'; add.textContent = '加入購物籃';
         add.addEventListener('click', () => { if (addToCart(product.id)) document.getElementById('detail-status').textContent = '已加入購物籃。'; });
@@ -155,7 +157,7 @@
             const card = document.createElement('article'); card.className = 'service-card product-card';
             const name = document.createElement('h4'); name.textContent = product.name;
             const note = document.createElement('p'); note.className = 'product-summary'; note.textContent = product.short_description;
-            const size = document.createElement('p'); size.textContent = [product.size, '價格請洽店主'].filter(Boolean).join(' · ');
+            const size = document.createElement('p'); size.textContent = [product.size, priceText(product)].filter(Boolean).join(' · ');
             const details = document.createElement('button'); details.type = 'button'; details.className = 'detail-link'; details.textContent = '查看詳情';
             details.setAttribute('aria-label', '查看詳情：' + product.name);
             details.addEventListener('click', () => showProduct(product));
@@ -175,19 +177,29 @@
 
     async function loadProducts() {
         if (catalogLoading) return;
-        catalogLoading = true;
         catalogReady = false;
         const notice = document.getElementById('products-status');
         if (notice) notice.textContent = '正在載入產品…';
         document.getElementById('checkout')?.setAttribute('disabled', '');
         try {
             const config = window.SPA_CONFIG;
+            if (window.SPA_PREVIEW) {
+                products = window.SPA_PREVIEW.get().filter(product => product.visible)
+                    .sort((a, b) => a.sort_order - b.sort_order || a.id.localeCompare(b.id))
+                    .map(product => ({...product}));
+                catalogReady = true;
+                try { cart = validCart(JSON.parse(localStorage.getItem(cartKey))); } catch { cart = validCart(cart); }
+                saveCart('');
+                renderProducts();
+                if (notice) notice.textContent = products.length ? '' : '暫時未有產品，歡迎聯絡店主查詢。';
+                return;
+            }
             if (!config?.url || !config?.publishableKey) throw new Error('Missing public configuration');
             const loaded = [];
             // Fetch in pages so the API's default row limit cannot silently remove saved cart items.
             for (let offset = 0; ; offset += 1000) {
                 const url = new URL('/rest/v1/products', config.url);
-                url.search = new URLSearchParams({select: '*', active: 'eq.true', order: 'sort_order.asc,id.asc', limit: '1000', offset: String(offset)});
+                url.search = new URLSearchParams({select: '*', visible: 'eq.true', order: 'sort_order.asc,id.asc', limit: '1000', offset: String(offset)});
                 const response = await fetch(url, {headers: {apikey: config.publishableKey}, signal: AbortSignal.timeout(15000), cache: 'no-store'});
                 if (!response.ok) throw new Error('Product request failed: ' + response.status);
                 const rows = await response.json();
@@ -196,7 +208,7 @@
                 if (rows.length < 1000) break;
             }
             if (detail?.open) detail.close();
-            products = loaded.map(p => ({...p, name: p.title}));
+            products = loaded;
             catalogReady = true;
             try { cart = validCart(JSON.parse(localStorage.getItem(cartKey))); } catch { cart = validCart(cart); }
             saveCart('');
