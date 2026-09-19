@@ -12,7 +12,7 @@ const saveButton = document.getElementById('save-product');
 const localPreview = window.SPA_PREVIEW;
 const categories = {serum: '精華護理', mask: '面膜護理', body: '身體護理'};
 const textFields = ['name', 'category', 'size', 'short_description', 'full_description'];
-const field = name => form.elements.namedItem(name === 'name' ? 'title' : name);
+const field = name => form.elements.namedItem(name);
 let client, editing, pendingPhoto, previewURL, adminPassword = '', busy = false;
 let imagePosition = {zoom: 1, x: 50, y: 50};
 
@@ -48,9 +48,9 @@ function openForm(product) {
     editing = product || null; pendingPhoto = null; form.reset();
     for (const key of textFields) field(key).value = product?.[key] || (key === 'category' ? 'serum' : '');
     field('price').value = product?.price ?? '';
-    field('active').checked = product?.visible ?? true;
+    field('visible').checked = product?.visible ?? true;
     field('sort_order').value = product?.sort_order ?? 0;
-    document.getElementById('visibility-label').textContent = field('active').checked ? 'ON · 顯示' : 'OFF · 隱藏';
+    document.getElementById('visibility-label').textContent = field('visible').checked ? 'ON · 顯示' : 'OFF · 隱藏';
     imagePosition = {zoom: product?.image_zoom || 1, x: product?.image_position_x ?? 50, y: product?.image_position_y ?? 50};
     photoFrame.hidden = photoControls.hidden = !product?.image_path;
     preview.removeAttribute('src');
@@ -140,8 +140,8 @@ document.getElementById('reload-admin').addEventListener('click', async () => {
     try { await loadList(); announce(adminStatus, '清單已更新。'); }
     catch (error) { console.error(error); announce(adminStatus, '清單暫時未能載入，請再試一次。'); }
 });
-field('active').addEventListener('change', () => {
-    document.getElementById('visibility-label').textContent = field('active').checked ? 'ON · 顯示' : 'OFF · 隱藏';
+field('visible').addEventListener('change', () => {
+    document.getElementById('visibility-label').textContent = field('visible').checked ? 'ON · 顯示' : 'OFF · 隱藏';
 });
 field('photo').addEventListener('change', () => {
     if (previewURL) URL.revokeObjectURL(previewURL);
@@ -171,7 +171,7 @@ form.addEventListener('submit', async event => {
     values.sort_order = Number(field('sort_order').value);
     values.image_zoom = imagePosition.zoom; values.image_position_x = imagePosition.x; values.image_position_y = imagePosition.y;
     values.image_path = editing?.image_path || null;
-    const visible = field('active').checked;
+    const visible = field('visible').checked;
     const file = field('photo').files[0];
     const allowed = ['image/jpeg', 'image/png', 'image/webp'];
     const maxPhotoSize = localPreview ? 3000000 : 10485760;
