@@ -1,3 +1,5 @@
+> Product shopping and mobile owner management: start with [SETUP.md](SETUP.md), then give the owner [OWNER-GUIDE.md](OWNER-GUIDE.md). The storefront requires the public Supabase configuration in `supabase-config.js`. See [IMPLEMENTATION-REPORT.md](IMPLEMENTATION-REPORT.md) for changes and tested limitations.
+
 # 🌷 SpaBooking – Beauty & Wellness Booking Website
 
 A soft, elegant, and responsive booking website designed for a spa / beauty studio. ✨

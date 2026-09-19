@@ -24,15 +24,9 @@
         });
     });
 
-    // Replace these placeholders with real products; keep IDs stable for saved baskets.
-    const products = [
-        { id: 'serum-1', category: 'serum', name: '保濕精華（示例）', size: '30 ml', description: '清透水感質地，作為日常保濕步驟的示例。', label: 'HYDRATE', color: '#ddc19e', paper: '#ecddc8' },
-        { id: 'serum-2', category: 'serum', name: '柔潤精華（示例）', size: '30 ml', description: '柔潤觸感的晚間護理示例，為日常留一點從容。', label: 'SOFTEN', color: '#deb4ad', paper: '#efdbd8' },
-        { id: 'mask-1', category: 'mask', name: '保濕面膜（示例）', size: '5 片 / 盒', description: '片裝面膜示例，適合展示每週護理系列。', label: 'DEW MASK', color: '#c5d0bf', paper: '#e0e6d9' },
-        { id: 'mask-2', category: 'mask', name: '晚安面膜（示例）', size: '5 片 / 盒', description: '晚間放鬆系列示例，為自己安排一段安靜時間。', label: 'NIGHT MASK', color: '#cfc3d6', paper: '#e5dfea' },
-        { id: 'body-1', category: 'body', name: '身體護理乳（示例）', size: '200 ml', description: '日常身體護理示例，呈現沐浴後的柔潤儀式。', label: 'BODY MILK', color: '#e5d7bb', paper: '#eee5d5' },
-        { id: 'body-2', category: 'body', name: '香氛沐浴露（示例）', size: '250 ml', description: '溫暖木質調概念示例，讓沐浴成為一天的小休息。', label: 'BODY WASH', color: '#c7b29a', paper: '#e5dbce' }
-    ];
+    let products = [];
+    let catalogReady = false;
+    let catalogLoading = false;
     const cartKey = 'ageless-spa-cart';
     const status = document.getElementById('cart-status');
     let cart = {};
@@ -40,7 +34,7 @@
         return Object.fromEntries(products.filter(p => Number.isInteger(value?.[p.id]) && value[p.id] > 0 && value[p.id] <= 99)
             .map(p => [p.id, value[p.id]]));
     }
-    try { cart = validCart(JSON.parse(localStorage.getItem(cartKey))); } catch {}
+
     function orderMessage() {
         return ['你好，我想查詢以下產品：', ...products.filter(p => cart[p.id]).map(p => `${p.name} × ${cart[p.id]}`),
             '', '請確認價格、庫存及付款 / 取貨或送貨方式，謝謝！'].join('\n');
@@ -48,9 +42,9 @@
     function saveCart(message) {
         try {
             localStorage.setItem(cartKey, JSON.stringify(cart));
-            status.textContent = message;
+            if (status) status.textContent = message;
         } catch {
-            status.textContent = message + ' 此瀏覽器未能儲存購物籃，重新整理後可能遺失。';
+            if (status) status.textContent = message + ' 此瀏覽器未能儲存購物籃，重新整理後可能遺失。';
         }
         renderCart();
     }
@@ -96,41 +90,134 @@
         }
         if (!count) items.textContent = '購物籃尚未有產品。請先到產品區選購。';
         document.getElementById('cart-count').textContent = count;
-        document.getElementById('checkout').disabled = !count;
+        document.getElementById('checkout').disabled = !count || !catalogReady;
     }
-    for (const product of document.getElementById('products') ? products : []) {
-        const card = document.createElement('article');
-        card.className = 'service-card product-card';
+    function addToCart(productId) {
+        if (!catalogReady) return false;
+        const product = products.find(p => p.id === productId);
+        if (!product) return false;
+        cart[product.id] = Math.min(99, (cart[product.id] || 0) + 1);
+        saveCart('已加入' + product.name + '。');
+        return true;
+    }
+    function productArtwork(product) {
         const art = document.createElement('div');
         art.className = 'product-art ' + product.category;
-        art.setAttribute('aria-hidden', 'true');
-        art.style.setProperty('--paper', product.paper);
-        art.style.setProperty('--bottle', product.color);
-        const pack = document.createElement('div'); pack.className = 'product-pack';
-        const brand = document.createElement('b'); brand.textContent = 'AGELESS';
-        const label = document.createElement('small'); label.textContent = product.label;
-        pack.append(brand, label); art.append(pack);
-        const name = document.createElement('h4'); name.textContent = product.name;
-        const note = document.createElement('p'); note.textContent = product.description;
-        const size = document.createElement('p'); size.textContent = product.size + ' · 示例包裝 · 價格請洽店主';
-        const add = document.createElement('button');
-        add.type = 'button'; add.className = 'btn'; add.textContent = '加入購物籃';
-        add.setAttribute('aria-label', '加入購物籃：' + product.name);
-        add.addEventListener('click', () => {
-            cart[product.id] = Math.min(99, (cart[product.id] || 0) + 1);
-            saveCart('已加入' + product.name + '。');
-            add.textContent = '已加入 · 繼續加入';
-        });
-        card.append(art, name, size, note, add);
-        document.querySelector('#category-' + product.category + ' .services-grid').append(card);
+        if (product.image_url) {
+            const img = document.createElement('img');
+            img.src = product.image_url; img.alt = product.name; img.loading = 'lazy';
+            img.addEventListener('error', () => { art.textContent = '圖片暫未提供'; });
+            art.append(img);
+        } else {
+            art.setAttribute('aria-label', '示例包裝');
+            art.style.setProperty('--paper', product.paper || '#ecddc8');
+            art.style.setProperty('--bottle', product.color || '#ddc19e');
+            const pack = document.createElement('div'); pack.className = 'product-pack';
+            const brand = document.createElement('b'); brand.textContent = 'AGELESS';
+            const label = document.createElement('small'); label.textContent = '示例包裝';
+            pack.append(brand, label); art.append(pack);
+        }
+        return art;
+    }
+    const detail = document.getElementById('product-detail');
+    function showProduct(product) {
+        const content = document.getElementById('product-detail-content');
+        content.replaceChildren(productArtwork(product));
+        const title = document.createElement('h2'); title.id = 'product-detail-title'; title.textContent = product.name;
+        content.append(title);
+        for (const [heading, text] of [['', product.size], ['', product.full_description], ['使用方法', product.usage]]) {
+            if (!text?.trim()) continue;
+            if (heading) { const h = document.createElement('h3'); h.textContent = heading; content.append(h); }
+            const paragraph = document.createElement('p'); paragraph.textContent = text; content.append(paragraph);
+        }
+        const highlights = (product.highlights || '').split('\n').map(line => line.trim()).filter(Boolean);
+        if (highlights.length) {
+            const h = document.createElement('h3'); h.textContent = '產品特色';
+            const list = document.createElement('ul');
+            for (const text of highlights) { const li = document.createElement('li'); li.textContent = text; list.append(li); }
+            content.append(h, list);
+        }
+        const add = document.createElement('button'); add.className = 'btn'; add.textContent = '加入購物籃';
+        add.addEventListener('click', () => { if (addToCart(product.id)) document.getElementById('detail-status').textContent = '已加入購物籃。'; });
+        content.append(add);
+        document.getElementById('detail-status').textContent = '';
+        detail.showModal();
+    }
+    document.getElementById('close-detail')?.addEventListener('click', () => detail.close());
+    detail?.addEventListener('click', event => {
+        const box = detail.getBoundingClientRect();
+        if (event.target === detail && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) detail.close();
+    });
+    function renderProducts() {
+        if (!document.getElementById('products')) return;
+        document.querySelectorAll('.product-category .services-grid').forEach(grid => grid.replaceChildren());
+        for (const product of products) {
+            const card = document.createElement('article'); card.className = 'service-card product-card';
+            const name = document.createElement('h4'); name.textContent = product.name;
+            const note = document.createElement('p'); note.className = 'product-summary'; note.textContent = product.short_description;
+            const size = document.createElement('p'); size.textContent = [product.size, '價格請洽店主'].filter(Boolean).join(' · ');
+            const details = document.createElement('button'); details.type = 'button'; details.className = 'detail-link'; details.textContent = '查看詳情';
+            details.setAttribute('aria-label', '查看詳情：' + product.name);
+            details.addEventListener('click', () => showProduct(product));
+            const add = document.createElement('button'); add.type = 'button'; add.className = 'btn'; add.textContent = '加入購物籃';
+            add.setAttribute('aria-label', '加入購物籃：' + product.name);
+            add.addEventListener('click', () => { if (addToCart(product.id)) add.textContent = '已加入 · 繼續加入'; });
+            card.addEventListener('click', event => { if (!event.target.closest('button')) { details.focus({preventScroll: true}); showProduct(product); } });
+            card.append(productArtwork(product), name, size, note, details, add);
+            document.querySelector('#category-' + product.category + ' .services-grid').append(card);
+        }
     }
     document.getElementById('checkout')?.addEventListener('click', () => {
-        if (!Object.keys(cart).length) return;
+        if (!catalogReady || !Object.keys(cart).length) return;
         window.open('https://wa.me/85291376887?text=' + encodeURIComponent(orderMessage()), '_blank', 'noopener,noreferrer');
     });
     renderCart();
 
-    window.addEventListener('pageshow', () => {
-        try { cart = validCart(JSON.parse(localStorage.getItem(cartKey))); } catch {}
+    async function loadProducts() {
+        if (catalogLoading) return;
+        catalogLoading = true;
+        catalogReady = false;
+        const notice = document.getElementById('products-status');
+        if (notice) notice.textContent = '正在載入產品…';
+        document.getElementById('checkout')?.setAttribute('disabled', '');
+        try {
+            const config = window.SPA_CONFIG;
+            if (!config?.url || !config?.publishableKey) throw new Error('Missing public configuration');
+            const loaded = [];
+            // Fetch in pages so the API's default row limit cannot silently remove saved cart items.
+            for (let offset = 0; ; offset += 1000) {
+                const url = new URL('/rest/v1/products', config.url);
+                url.search = new URLSearchParams({select: '*', active: 'eq.true', order: 'sort_order.asc,id.asc', limit: '1000', offset: String(offset)});
+                const response = await fetch(url, {headers: {apikey: config.publishableKey}, signal: AbortSignal.timeout(15000), cache: 'no-store'});
+                if (!response.ok) throw new Error('Product request failed: ' + response.status);
+                const rows = await response.json();
+                if (!Array.isArray(rows)) throw new Error('Invalid catalog response');
+                loaded.push(...rows);
+                if (rows.length < 1000) break;
+            }
+            if (detail?.open) detail.close();
+            products = loaded.map(p => ({...p, name: p.title}));
+            catalogReady = true;
+            try { cart = validCart(JSON.parse(localStorage.getItem(cartKey))); } catch { cart = validCart(cart); }
+            saveCart('');
+            renderProducts();
+            if (notice) notice.textContent = products.length ? '' : '暫時未有產品，歡迎聯絡店主查詢。';
+        } catch (error) {
+            console.error('Catalog unavailable', error);
+            catalogReady = false;
+            products = [];
+            renderProducts();
+            if (detail?.open) detail.close();
+            if (notice) notice.textContent = '產品資料暫時未能載入，請稍後再試。';
+            const items = document.getElementById('cart-items');
+            if (items) items.textContent = '產品資料載入後，即可查看已儲存的購物籃。';
+            // Do not overwrite localStorage during an outage.
+        } finally { catalogLoading = false; }
+    }
+    document.getElementById('retry-products')?.addEventListener('click', loadProducts);
+    window.addEventListener('pageshow', loadProducts);
+    window.addEventListener('storage', event => {
+        if (event.key !== cartKey || !catalogReady) return;
+        try { cart = validCart(JSON.parse(event.newValue)); } catch { cart = {}; }
         renderCart();
     });

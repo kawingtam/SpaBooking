@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Spa Product Manager · 產品管理</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+<main class="admin-shell">
+    <header><p>AGELESS SPA</p><h1>Spa Product Manager</h1><p>產品管理</p><a href="products.html">查看商店 →</a></header>
+    <p id="admin-status" role="status" tabindex="-1"></p>
+    <form id="login-form" hidden>
+        <h2>店主登入</h2>
+        <label>電郵 Email<input name="email" type="email" autocomplete="username" required></label>
+        <label>密碼 Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn" type="submit">登入 Log In</button>
+    </form>
+    <section id="manager" hidden aria-label="產品管理">
+        <div class="admin-actions"><button id="new-product" class="btn" type="button">＋ 新增產品</button><button id="logout" type="button">登出</button></div>
+        <button id="reload-admin" type="button">重新載入清單</button>
+        <div id="admin-products"></div>
+    </section>
+    <form id="product-form" hidden>
+        <h2 id="form-title">新增產品</h2>
+        <fieldset id="product-fields">
+            <label>產品名稱<input name="title" required maxlength="160"></label>
+            <label>類別<select name="category" required><option value="serum">精華護理</option><option value="mask">面膜護理</option><option value="body">身體護理</option></select></label>
+            <label>容量 / 規格（選填）<input name="size" maxlength="120" placeholder="例如：30 ml"></label>
+            <label>簡短介紹<textarea name="short_description" rows="3" maxlength="300" required aria-describedby="short-help"></textarea></label>
+            <p id="short-help" class="field-help">這段介紹會顯示在商店的產品卡片上。</p>
+            <label>完整介紹<textarea name="full_description" rows="7" maxlength="10000" required></textarea></label>
+            <label>使用方法（選填）<textarea name="usage" rows="3" maxlength="5000"></textarea></label>
+            <label>產品特色（選填）<textarea name="highlights" rows="4" maxlength="5000" placeholder="每行輸入一項特色"></textarea></label>
+            <label class="photo-picker">上載產品照片 / 拍照<input name="photo" type="file" accept="image/*" aria-describedby="photo-help"></label>
+            <p id="photo-help" class="field-help">可選擇相簿或拍照（視手機支援）。JPG、PNG、WebP，最多 10 MB。若照片格式不支援，請選擇 JPG 或螢幕截圖。</p>
+            <img id="photo-preview" alt="產品照片預覽" hidden>
+            <label class="visibility-switch"><input name="active" type="checkbox" role="switch" checked> 在商店顯示 <span id="visibility-label">ON · 顯示</span></label>
+            <details><summary>更多選項</summary><label>顯示次序（數字較小排前）<input name="sort_order" type="number" min="0" max="999999" step="1" value="0" required></label></details>
+            <div class="form-actions"><button id="save-product" class="btn" type="submit">儲存產品</button><button id="cancel-edit" type="button">取消</button></div>
+            <button id="delete-product" class="danger" type="button" hidden>刪除產品…</button>
+        </fieldset>
+        <p id="form-status" role="status" tabindex="-1"></p>
+    </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js" defer></script>
+<script src="supabase-config.js" defer></script>
+<script src="admin.js" defer></script>
+</body>
+</html>

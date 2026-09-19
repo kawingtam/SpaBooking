@@ -4,8 +4,10 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const script = fs.readFileSync(__dirname + '/app.js', 'utf8');
 new vm.Script(script);
-const catalog = script.slice(script.indexOf('const products ='), script.indexOf('const cartKey ='));
-const validation = script.slice(script.indexOf('function validCart('), script.indexOf('try { cart ='));
+const sql = fs.readFileSync(__dirname + '/supabase-setup.sql', 'utf8');
+const seeded = [...sql.matchAll(/^\('([^']+)', '([^']+)'/gm)].map(m => ({id:m[1], name:m[2]}));
+const catalog = 'const products = ' + JSON.stringify(seeded) + '; let catalogReady = true;';
+const validation = script.slice(script.indexOf('function validCart('), script.indexOf('function orderMessage('));
 const message = script.slice(script.indexOf('function orderMessage('), script.indexOf('function saveCart('));
 const checkout = script.slice(script.indexOf("document.getElementById('checkout')?.addEventListener"), script.indexOf('    renderCart();', script.indexOf("document.getElementById('checkout')?.addEventListener")));
 let click, opened;
@@ -42,3 +44,38 @@ for (const file of ['index.html', 'products.html']) {
     }
 }
 console.log('PASS: separate pages, six unique products, local assets and navigation targets.');
+
+const add = script.slice(script.indexOf('function addToCart('), script.indexOf('function productArtwork('));
+vm.runInContext('function saveCart() {}' + add, context);
+evaluate('cart = {}; addToCart("serum-1"); addToCart("serum-1")');
+assert.equal(evaluate('cart["serum-1"]'), 2);
+evaluate('cart["serum-1"] = 99; addToCart("serum-1"); addToCart("unknown")');
+assert.equal(evaluate('JSON.stringify(cart)'), '{"serum-1":99}');
+evaluate('catalogReady = false; addToCart("mask-1")');
+assert.equal(evaluate('cart["mask-1"]'), undefined);
+evaluate('products.splice(0,1)');
+assert.equal(evaluate('JSON.stringify(validCart(cart))'), '{}');
+for (const name of ['admin.js','supabase-config.js']) new vm.Script(fs.readFileSync(__dirname+'/'+name,'utf8'));
+console.log('PASS: shared add action, quantity cap, unavailable catalog guard, removed product pruning, admin/config syntax.');
+
+// Verify successful loads prune stale IDs, while outages preserve the saved basket.
+const nodes = Object.fromEntries(['products-status','checkout','cart-items'].map(id=>[id,{textContent:'',setAttribute(){}}]));
+let stored='{"serum-1":2,"deleted":1}', failed=false, requestURL;
+const loadingContext = vm.createContext({URL, URLSearchParams, AbortSignal,
+    document:{getElementById:id=>nodes[id]}, console:{error(){}},
+    window:{SPA_CONFIG:{url:'https://example.supabase.co',publishableKey:'public'}},
+    localStorage:{getItem:()=>stored,setItem:(_,value)=>stored=value},
+    fetch:async url=>{requestURL=url; if(failed) throw Error('offline'); return {ok:true,json:async()=>[{id:'serum-1',title:'Serum'}]};}
+});
+vm.runInContext('let products=[], cart={},catalogReady=false,catalogLoading=false; const cartKey="ageless-spa-cart", detail=null; function renderProducts(){}; function saveCart(){localStorage.setItem(cartKey,JSON.stringify(cart));}'+validation+script.slice(script.indexOf('async function loadProducts()'),script.indexOf("    document.getElementById('retry-products')")),loadingContext);
+(async()=>{
+    await vm.runInContext('loadProducts()',loadingContext);
+    assert.equal(stored,'{"serum-1":2}');
+    assert.equal(requestURL.searchParams.get('active'),'eq.true');
+    assert.equal(requestURL.searchParams.get('order'),'sort_order.asc,id.asc');
+    failed=true;await vm.runInContext('loadProducts()',loadingContext);
+    assert.equal(stored,'{"serum-1":2}');
+    assert.equal(vm.runInContext('catalogReady',loadingContext),false);
+    assert.match(nodes['products-status'].textContent,/暫時未能載入/);
+    console.log('PASS: active-only ordered query, stale cart pruning, outage preserves localStorage and disables checkout.');
+})().catch(error=>{console.error(error);process.exitCode=1;});
